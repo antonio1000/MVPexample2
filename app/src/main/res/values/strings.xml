@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MVPExample2</string>
+    <string name="album_tubnail">Album Tubnail</string>
+    <string name="artworkimage">ArtworkImage</string>
+</resources>

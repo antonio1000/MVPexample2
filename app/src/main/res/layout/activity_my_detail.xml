@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MyDetailActivity">
+
+    <ImageView
+        android:id="@+id/myArtworkImageView"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_alignParentStart="true"
+        android:contentDescription="@string/artworkimage" />
+
+    <TextView
+        android:id="@+id/detailTrackName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/myArtworkImageView"/>
+
+    <TextView
+        android:id="@+id/detailAlbumName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/detailTrackName"/>
+
+    <TextView
+        android:id="@+id/detailArtistName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/detailAlbumName"/>
+
+    <TextView
+        android:id="@+id/detailPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/detailArtistName"/>
+
+    <TextView
+        android:id="@+id/detailData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/detailPrice"/>
+
+</android.support.constraint.ConstraintLayout>
