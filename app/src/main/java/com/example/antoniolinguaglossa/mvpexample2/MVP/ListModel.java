@@ -4,6 +4,8 @@ import com.example.antoniolinguaglossa.mvpexample2.model.Result;
 
 import java.util.ArrayList;
 
+import io.reactivex.disposables.Disposable;
+
 public interface ListModel {
 
     interface OnFinishedListener {
@@ -13,5 +15,6 @@ public interface ListModel {
     void findItems(String s, OnFinishedListener listener);
 
     ArrayList<Result> getItems();
+
 
 }

@@ -1,6 +1,7 @@
 package com.example.antoniolinguaglossa.mvpexample2.api
 
 import com.example.antoniolinguaglossa.mvpexample2.model.ResultCont
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -24,7 +25,8 @@ interface JournalerBackendService {
     //Uso solo questa...
     @GET("search?")
     fun getResults(@Query("term") artist : String
-    ): Call<ResultCont>
+    //): Call<ResultCont>
+    ): Observable<ResultCont>
 
 
     @GET("notes")

@@ -1,29 +1,56 @@
 package com.example.antoniolinguaglossa.mvpexample2.MVP
 
-import android.os.AsyncTask
 import android.util.Log
 import com.example.antoniolinguaglossa.mvpexample2.SingletonArrayListResult
 import com.example.antoniolinguaglossa.mvpexample2.api.SingletonRetrofit
 import com.example.antoniolinguaglossa.mvpexample2.model.Result
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import java.util.ArrayList
 
 
 class ListModelImplRetrofit : ListModel {
+
     override fun getItems(): java.util.ArrayList<Result>? {
         Log.d("test","getItems");
         //return ITEMS
         return singletonArrayListResult.array
     }
 
-    //var ITEMS = ArrayList<Result>()
     var singletonArrayListResult = SingletonArrayListResult.getInstance()
+    lateinit var disposable : Disposable
+
+    constructor() : super()
+
+    private lateinit var listener: ListModel.OnFinishedListener
+
+    constructor(listener: ListModel.OnFinishedListener) {
+        this.listener = listener
+    }
 
     override fun findItems(s : String, listener: ListModel.OnFinishedListener) {
 
-        AsyncTaskExample(listener).execute(s)
+        //AsyncTaskExample(listener).execute(s)
+
+        val service = SingletonRetrofit.instance.mySingletonRetrofit
+
+        disposable = service.getResults(s)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> singletonArrayListResult.setArrayFromArray(result?.results as ArrayList<Result>?)
+                            listener.onFinished(singletonArrayListResult.array)
+                            Log.d("Result","result")},
+                        { error -> Log.e("RxJava",error.message)}
+                )
+
+
+
 
     }
 
-    inner class AsyncTaskExample: AsyncTask<String, String, ArrayList<Result>> {
+    /*inner class AsyncTaskExample: AsyncTask<String, String, ArrayList<Result>> {
 
         constructor() : super()
 
@@ -78,5 +105,5 @@ class ListModelImplRetrofit : ListModel {
                 Log.i("network", result.toString())
             }
         }
-    }
+    }*/
 }

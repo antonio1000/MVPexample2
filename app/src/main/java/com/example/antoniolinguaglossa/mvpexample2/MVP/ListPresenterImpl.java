@@ -5,6 +5,8 @@ import android.util.Log;
 import com.example.antoniolinguaglossa.mvpexample2.model.Result;
 import java.util.ArrayList;
 
+import io.reactivex.disposables.Disposable;
+
 
 public class ListPresenterImpl implements ListPresenter, ListModel.OnFinishedListener {
 
@@ -53,7 +55,6 @@ public class ListPresenterImpl implements ListPresenter, ListModel.OnFinishedLis
 
     @Override
     public ArrayList<Result> getItemsFromModel() {
-        Log.d("test","onPippo");
         ArrayList<Result> tmpVal = new ArrayList<Result>();
         tmpVal = listModelInteractor.getItems();
         return tmpVal;
@@ -68,6 +69,7 @@ public class ListPresenterImpl implements ListPresenter, ListModel.OnFinishedLis
                 Log.d("test","Hide");
 
             }
+
         }
 
         public ItemListView getMainView() {

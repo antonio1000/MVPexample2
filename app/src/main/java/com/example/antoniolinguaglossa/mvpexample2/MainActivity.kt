@@ -16,6 +16,9 @@ import com.example.antoniolinguaglossa.mvpexample2.model.Result
 
 class MainActivity : AppCompatActivity(), ItemListView, MyInterface {
 
+    //private var disposable: Disposable? = null
+
+
     override fun navigateToDetails(position: Int) {
         //val message = position.toString()
         var ItemsGetOut : ArrayList<Result>
@@ -59,6 +62,7 @@ class MainActivity : AppCompatActivity(), ItemListView, MyInterface {
             }
         })
         searchView.isSubmitButtonEnabled = true
+        searchView.clearFocus();
 
     }
 
@@ -68,6 +72,7 @@ class MainActivity : AppCompatActivity(), ItemListView, MyInterface {
         my_recycler_view.setHasFixedSize(true)
         var mAdapter: MoviesAdapter? = MoviesAdapter(items)
         //mAdapter = MoviesAdapter(items)
+        mAdapter?.notifyDataSetChanged()
         val mLayoutManager = LinearLayoutManager(applicationContext)
         if (my_recycler_view != null) {
             my_recycler_view.setLayoutManager(mLayoutManager)
@@ -101,5 +106,6 @@ class MainActivity : AppCompatActivity(), ItemListView, MyInterface {
         progressBar.setVisibility(View.INVISIBLE)
         listView.setVisibility(View.VISIBLE)
     }*/
+
 
 }
